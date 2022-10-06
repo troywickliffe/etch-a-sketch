@@ -1,8 +1,16 @@
+//Event listener so html and css load first then JavaScript DOM starts
 document.addEventListener('DOMContentLoaded', function() {
-    createGrid(32)
+    createGrid(16);
+
+    let btnPop = document.querySelector('#pop')
+    btnPop.addEventListener('click', function() {
+        let size = getSize()
+        createGrid(size);
+    })
     console.log('hi')
 })
 
+//Function to create grid size
 function createGrid(size) {
     let container = document.querySelector('.container');
 
@@ -13,7 +21,25 @@ function createGrid(size) {
 
     for (let i = 0; i < numDivs; i++) {
         let div = document.createElement('div');
-        div.style.backgroundColor = 'yellow';
+        div.addEventListener('mouseover', function() {
+            div.style.backgroundColor = 'black';
+        })
         container.insertAdjacentElement('beforeend', div);
+    }
+}
+
+//Function to prompt user for input
+function getSize() {
+    let input = prompt('Enter a number to create board size');
+    let message = document.querySelector('#message');
+    if (input == '') {
+        message.textContent = "Please provide a Number";
+    }
+    else if (input < 0 || input > 100) {
+        message.textContent = "Provide a number between 1 and 100"
+    }
+    else {
+        message.textContent = "Time to Sketch!"
+        return input;
     }
 }
