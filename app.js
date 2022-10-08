@@ -1,3 +1,5 @@
+let color = 'black';
+
 //Event listener so html and css load first then JavaScript DOM starts
 document.addEventListener('DOMContentLoaded', function() {
     createGrid(16);
@@ -21,9 +23,7 @@ function createGrid(size) {
 
     for (let i = 0; i < numDivs; i++) {
         let div = document.createElement('div');
-        div.addEventListener('mouseover', function() {
-            div.style.backgroundColor = 'black';
-        })
+        div.addEventListener('mouseover', colorDiv)
         container.insertAdjacentElement('beforeend', div);
     }
 }
@@ -42,4 +42,17 @@ function getSize() {
         message.textContent = "Time to Sketch!"
         return input;
     }
+}
+
+function colorDiv(){
+    if(color == 'rainbow') {
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`
+    }
+    else {
+        this.style.backgroundColor = 'black';
+    }
+}
+
+function setColor(colorChoice) {
+    color = colorChoice;
 }
