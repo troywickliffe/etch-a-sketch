@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let size = getSize()
         createGrid(size);
     })
-    console.log('hi')
 })
 
 //Function to create grid size
